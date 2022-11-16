@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;background: #f40;
+    }
+    p{
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        background: #424242;
+    }
+</style>
+<body>
+    <div>
+        <p></p>
+    </div>
+    <button>移除</button>
+    <script>
+        let div = document.querySelector('div');
+        div.addEventListener('click',fn);
+        let p = document.querySelector('p').addEventListener('click',function(){console.log(2);}) 
+        let btn = document.querySelector('button').addEventListener('click',function(){
+            div.removeEventListener('click',fn);
+        });
+        function fn(){console.log(1)};
+    </script>
+</body>
+</html>

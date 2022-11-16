@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象的声明方法 对象属性和方法的访问
+        // let dog = {};
+        // dog.name = 'alan';
+        // dog.age = 2;
+        // dog.eat = function(){
+        //     console.log('eating');
+        // }
+        // 对象属性的访问
+        // console.log(dog['age']);
+        // dog.eat();
+        // 
+        // 对象
+        // let obj = {
+        //     name: 'alan',
+        //     age: 4,
+        //     eat() {
+        //         console.log('eating');
+        //     }
+        // }
+        // obj.eat();
+        // 
+        // let notebook = {
+        //     Brand: 'Asus',
+        //     CPU: 'i5 - 11500',
+        //     GPU: 'RTX2060',
+        //     Memory: 'Samsung',
+        //     SSD: 'WD BLUE SN570 1TB',
+        //     Price: '7000￥'
+        // }
+        // console.log(notebook);
+        //批量创建对象的方法
+        // 构造函数
+        function Carts(brand, color) {
+            // this指代实例化对象 
+            this.brand = brand;
+            this.color = color;
+        }
+        // 原型既是对象也是属性
+        // Carts.prototype = {
+        // 内部直接赋值 
+        //     brand:BMW
+        // }
+        // Carts.prototype.age = 7;
+        // 构造函数创建对象只能被本身访问
+        // Carts.age = 6;
+        // console.log(Carts.age);
+        let cart = new Carts('BMW', 'red');
+        console.log(cart);
+        // for (let i in cart) {
+        //     document.write(i + ":" + cart[i] + "<br>");
+        // }
+        // for (var i in cart) {
+        //     console.log(cart[i]);
+        // }
+        // delete 空格 + 对象属性名； 删除对象属性
+        // let car = new Object();
+        // car.color = 'red'
+        // delete car.color;
+        // console.log(car.color);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.father{
+    width: 200px;
+    height: 200px;
+    background: #f40;
+}
+.son{
+    width: 100px;
+    height: 100px;
+    background: #424242;
+}
+</style>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <a href="https://www.baidu.com/">跳转</a>
+    <script>
+        // let father = document.querySelector('.father').addEventListener('click',function(e){
+        //     console.log(1);
+        //     console.log(e.target);
+        // })
+        // let son = document.querySelector('.son').addEventListener('click',function(e){
+        //     console.log(2);
+        //      阻止事件冒泡 
+        //     event.stopPropagation();
+        //     console.log(e.target);
+        // })
+        //
+        // 取消默认事件
+        let father = document.querySelector('.father');
+        let son = document.querySelector('.son').addEventListener('click',function(){})
+        father.oncontextmenu = function(){
+            return  false;
+        }
+        let a = document.querySelector('a').addEventListener('click',function(){event.preventDefault();})
+    </script>
+</body>
+</html>

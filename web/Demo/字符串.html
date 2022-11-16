@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      let name = '宁静'
+      let sex = '女' 
+      let age = '22' 
+      let add = '长宁街123号'
+      let email = '235738@163.com'
+      let phone = '13546473536'
+      console.log(`姓名: ${name}   性别: ${sex}   年龄: ${age}   地址: ${add}   邮件: ${email}   电话: ${phone}`);
+    //   let res = email.indexOf('3');
+    //   let res = email.lastIndexOf('3');
+    //   console.log(res);
+    //   console.log(phone.charAt(9));
+    //   
+    //   console.log(phone.slice(3,5));
+    //   console.log(phone.slice(3));
+    //   
+    //   (开始下标，截取个数)
+    //   console.log(phone.substr(4,5));
+    // 
+    // 转换为数组
+    // let res =  add.split('');
+    // 数组反转
+    // let re = res.reverse();
+    // 转换为字符串
+    // let r = re.toString();
+    // console.log(r);
+    // 替换字符串内容
+    // let res = phone.replace('13546473536' ,  '63537464531')
+    // console.log(res);
+    // 屏蔽敏感词
+    // let res = /3/g;
+    // let i = phone.replace(res,'*');
+    // console.log(i);
+    // 去除字符串空格，重复值
+    let str = [... new Set('9812424535381787966')].join('');
+   console.log(str);
+    </script>
+</body>
+</html>

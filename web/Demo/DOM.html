@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .active{
+            width: 200px;
+            height: 30px;
+            background: rgb(9, 8, 8);
+            color: #fff;
+        }
+    </style>
+    <!-- <div></div>
+    <div class="d"></div>
+    <input type="text" name="user"> -->
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="son3"></div>
+    </div>
+    <!-- <img src="imgs/1.jpg" alt="car" title="carousel"> -->
+    <br>
+    账号：
+    <input type="text">
+    <br>
+    <br>
+    密码:&nbsp;&nbsp;
+    <input type="password">
+    <br>
+    <br>
+    爱好:
+    <input type="checkbox" name="hobby" id="">跑步
+    <input type="checkbox" name="hobby" id="">阅读
+    <input type="checkbox" name="hobby" id="">音乐
+    <br>
+    <br>
+    <input type="text" name="" id="input">
+    <button onclick="fn()">提交</button>
+    <p id="demo"></p>
+    <script>
+        function fn(){
+            let title = document.querySelector('#input').value;
+            if(isNaN(title)||title < 10){
+                text = '警告'
+            }
+            else{
+                text = "提交成功"
+            }
+            document.getElementById('demo').innerHTML = text; 
+        }
+        // 获取元素
+        // let div = document.getElementsByTagName('div')[0];
+        // div.innerHTML = 'hello,world';
+        // console.log(div);
+        // let div1 = document.getElementsByClassName('d')[0];
+        // div1.innerHTML = 'welcome!';
+        // console.log(div1);
+        // // 获取表单
+        // let inp = document.getElementsByName('user');
+        // console.log(inp);
+        // 只获取一个元素，参数是css选择器
+        // let div = document.querySelector('div');
+        // console.log(div);
+        // 获取集合，参数是css选择器
+        // document.querySelectorAll
+        let body = document.body;
+        let father = document.querySelector('.father');
+        let son1 = document.querySelector('.son1');
+        let son2 = document.querySelector('.son2');
+        let son3 = document.querySelector('.son3');
+        let img = document.querySelector('img');
+        // 父节点
+        // let father = son1.parentNode;
+        // 兄弟节点 
+        // previousSibling上一个兄弟节点文本节点;previousElementSibling上一个兄弟节点元素节点
+        // nextElementSibling下一个兄弟节点元素节点
+        // let prve = son1.nextElementSibling;
+        // console.log(prve);
+        // 子节点
+        // let child = father.firstElementChild;
+        // console.log(child);
+        // 遍历所有child
+        // let children = father.children;
+        // for(var i = 0;i < children.length;i++){
+        //     console.log(children[i]);
+        // }
+        // 增删改查
+        // 创建节点
+        // let p = document.createElement('p');
+        // p.innerHTML = 'hello';
+        // 插入(插入尾部)
+        // father.appendChild(p);
+        // console.log(p);
+        // 在某元素前插入
+        // father.insertBefore(p,son1);
+        // console.log(father);
+        // 删除元素：删除子元素；删除自己
+        // father.removeChild(son1);
+        // son1.remove();
+        // 复制节点
+        // let fa2 = father.cloneNode(true);
+        // body.appendChild(fa2);
+        // 属性操作
+        // img.src = 'imgs/7.png';
+        // img.alt = 'cart';
+        // img.title = 'cart';
+        //样式属性
+        // son1.className = 'active';
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background: #000;
+    }
+    div{
+        width: 56px;
+        height: 56px;
+        overflow: hidden;
+        position: absolute;
+        background-image: url(starimgs/star.png);
+        background-size: 100%;
+        transition: all 1s;
+        animation: star 1s ease-in-out infinite;
+    }
+    @keyframes star{
+        0%{opacity: 0;}
+        100%{opacity: 1;}
+    }
+    div:hover{
+        transform: scale(3) rotate(180deg) !important;
+
+    }
+</style>
+<body>
+</body>
+<script>
+    var starW = document.documentElement.clientWidth;
+    var starH = document.documentElement.clientHeight;
+    let body = document.body;
+    for(let i = 0;i < 200;i++){
+        let div = document.createElement('div');
+        body.appendChild(div)
+        var w = parseInt(Math.random()*starW);
+        var h = parseInt(Math.random()*starH);
+        var s = Math.random()*1.5;
+        var delay = Math.random()*50;
+        div.style.left = w+'px';
+        div.style. top = h+'px';
+        div.style.transform = `scale(${s})`
+        div.style.animationDelay = `${delay}s`
+    }
+    console.log(delay);
+</script>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #container {
+        display: flex;
+        margin: 4rem;
+        position: relative;
+      }
+      #game {
+        /* border: 1px solid #93f; */
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background: #000;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.82);
+      }
+      .control {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        position: relative;
+      }
+      h1 {
+        text-transform: uppercase;
+        color: #c21f30;
+        text-align: center;
+        margin: 0;
+      }
+      h1::first-letter {
+        font-size: 200%;
+        color: #ea3446;
+        text-shadow: 2px 2px 6px #ea3446ec;
+      }
+      .btn {
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        background: #c21f30;
+        color: beige;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+      }
+      .btn:active,
+      .btn:hover {
+        background: #ea3446;
+      }
+      .info {
+        margin: 0.5rem;
+        color: #c21f30;
+        font-size: 1.5rem;
+      }
+      .info > :first-child::after {
+        content: ":";
+      }
+      #next {
+        display: inline-grid;
+        grid-template: 50% 50%;
+        grid-template-columns: repeat(4, 25%);
+        background: #000;
+        padding: 4px;
+        border-radius: 4px;
+      }
+      .box {
+        width: 30px;
+        height: 30px;
+        margin: 1px;
+      }
+      #help-container {
+        box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+        border-radius: 1rem;
+        background: white;
+        color: #c21f30;
+        /* backdrop-filter: blur(6px); */
+        padding: 1rem;
+        position: absolute;
+        top: 2rem;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 50;
+      }
+      #help-container > h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+      }
+      #help-container > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul > li {
+        font-size: 1.2rem;
+        white-space: nowrap;
+      }
+      ul > li > :first-child {
+        display: inline-block;
+        width: 4rem;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="./tetris.js"></script>
+    <script>
+      window.onload = () => {
+        // 提供 querySelector 的缩写
+        const $ = document.querySelector.bind(document);
+        //
+        const game = new Game($("#game"));
+        game.timer.onUpdate = (ms) => {
+          $("#time").innerHTML = `${parseInt(ms / 60 / 1000)}:${
+            parseInt(ms / 1000) % 60
+          }.${parseInt(ms / 100) % 10}`;
+        };
+        game.onUpdate = ({ status, score, speed, next }) => {
+          $("#status").innerHTML = status;
+          $("#score").innerHTML = score;
+          $("#speed").innerHTML = speed + "ms";
+          // 更新预览
+          document
+            .querySelectorAll(".box")
+            .forEach((el) => (el.style.backgroundColor = "transparent"));
+          next.tetris.forEach(
+            ([row, column]) =>
+              ($(`#tile${row}${column}`).style.backgroundColor = next.color)
+          );
+        };
+        $("#start").onclick = () => game.start();
+        $("#pause").onclick = () => {
+          game.pause();
+          $("#pause").innerHTML = game.status == "pause" ? "resume" : "pause";
+        };
+        $("#help").onclick = () => {
+          $("#help-container").classList.toggle("hidden");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="game"></div>
+      <div class="control">
+        <h1>Tetris</h1>
+        <div class="btn" id="start">start game</div>
+        <div class="btn" id="pause">pause</div>
+        <div class="btn" id="help">help</div>
+        <div class="info">
+          <span>status</span>
+          <span id="status"></span>
+        </div>
+        <div class="info">
+          <span>score</span>
+          <span id="score"></span>
+        </div>
+        <div class="info">
+          <span>time</span>
+          <span id="time"></span>
+        </div>
+        <div class="info">
+          <span>speed</span>
+          <span id="speed"></span>
+        </div>
+        <div class="info">
+          <span>next</span>
+          <span id="next">
+            <div id="tile00" class="box"></div>
+            <div id="tile01" class="box"></div>
+            <div id="tile02" class="box"></div>
+            <div id="tile03" class="box"></div>
+            <div id="tile10" class="box"></div>
+            <div id="tile11" class="box"></div>
+            <div id="tile12" class="box"></div>
+            <div id="tile13" class="box"></div>
+          </span>
+        </div>
+
+        <div id="help-container" class="hidden">
+          <h2>help</h2>
+          <ul>
+            <li>
+              <span>up</span>
+              <span>left rotate</span>
+            </li>
+            <li>
+              <span>down</span>
+              <span>move down</span>
+            </li>
+            <li>
+              <span>left</span>
+              <span>move left</span>
+            </li>
+            <li>
+              <span>right</span>
+              <span>move right</span>
+            </li>
+            <li>
+              <span>space</span>
+              <span>direct down</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

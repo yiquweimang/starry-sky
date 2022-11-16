@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 求数组最大最小值 平均值
+        // let arr = [12,3,8,9,15]
+        // let max = arr[0];
+        // let min = arr[0];
+        // let sum = 0;
+        // let count = 0;
+        // for(var i = 0;i<arr.length;i++){
+        //     if(arr[i]>max){
+        //         max = arr[i];
+        //     }
+        //     if(arr[i]<min){
+        //         min = arr[i];
+        //     }
+        // sum +=arr[i];
+        // }
+        // count = sum/arr.length;
+        // console.log(count);
+        // console.log(max);
+        // console.log(min);
+        // console.log(arr.reverse());
+        // 数组倒序
+        // let arry = [1,21,45,12,23]
+        // for(var t = arry.length-1;t >= 0;t--){
+        //     console.log(arry[t]);
+        // }
+        // let arr = [1,23,12,34,56]
+        // arr.forEach(function(item,key)
+        // {
+        //     console.log(key,item);
+        // });
+            // 数组去重
+        let arr = [1,1,2,23,12,34,56,-1,-4,2,3,2,3]
+     // 比较相邻项 1
+        //    function fn(arr){
+        //     arr = arr.sort(function(a,b){
+        //         return a-b;
+        //     });
+        //     let arr2 = [];
+        //     for(let i = 0;i < arr.length;i++){
+        //         arr[i]===arr[i-1]?arr2 : arr2.push(arr[i])
+        //     }
+        //     return arr2;
+        //    }
+        //    console.log(fn(arr));
+     // 
+            // 2
+            // function fn(arr)
+            // {
+            //     arr = arr.sort(function(a,b){
+            //     return a-b;
+            //     });
+            //     // .new Set方法，返回一个类数组，需结合array.from,转成真实数组
+            //     return (Array.from(new Set(arr)))
+            // }
+            // console.log(fn(arr));
+    // 
+            // 3
+            // function fn(arr){
+            //     arr = arr.sort(function(a,b){
+            //     return a-b;
+            //     });
+            //     // 利用indexof检测元素在数组中第一次出现的位置是否和元素现在的位置相等，相等说明不重复反正重复
+            //     return Array.prototype.filter.call(arr,function(item,index){
+            //         return arr.indexOf(item) === index;
+            //     })
+            // }
+            // console.log(fn(arr));
+    // 
+    // 
+            // 4
+                // for(var i = 0;i<arr.length;i++){
+                //     for(var j = i+1;j<arr.length;j++){
+                //         if(arr[i]==arr[j]){
+                //             arr.splice(j,1);
+                //             arr.length--;
+                //             j--;
+                //         }
+                //     }
+                // }
+                // console.log(arr);
+    // 
+    // 
+            //5
+            // let newArr = [];
+            // for( var i = 0;i<arr.length;i++)
+            //  {
+            //     if(newArr.indexOf(arr[i]) == -1){
+            //         newArr.push(arr[i])
+            //     }
+            // }
+            // console.log(newArr);
+    //
+        //6
+        let newArr = [];
+        for(var i = 0;i < arr.length;i++){
+            if(!newArr.includes(arr[i])){
+                newArr.push(arr[i])
+            }
+        }
+        console.log(newArr);
+    //  
+        // arr.sort(function(a,b){
+        //     // a-b为升序 b-a为降序
+        //     return b-a;
+        // });
+        // console.log(arr);
+        // let res = arr.splice(0,3,5,6,7)
+        // console.log(res);
+        // console.log(arr);
+        // 
+        // let res = arr.slice(1,3);截取数字为下标，截前不截后
+        // console.log(res);
+        // 
+        // let res = arr1.indexOf('apple')获取下标
+        // console.log(res);
+        // 
+        // arr2 = arr.concat(arr1);拼接数组
+        // console.log(arr2);
+        // 拼接数组
+        // var stringArray = ['this','is','Baidu','Campus'];
+        // let str = stringArray.join('');
+        // console.log(str);
+        // 
+        // arr.pop();数组最后一项开始删除
+        // arr.shift();数组第一项开始删除
+        // arr.push('orange');数组最后一项开始添加
+        // arr.unshift('apple');数组第一项开始添加
+        // let str = arr.join(' ');数组转字符串
+        // console.log(str);
+        
+    </script>
+</body>
+</html>

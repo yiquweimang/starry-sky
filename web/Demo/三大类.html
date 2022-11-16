@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            width: 50px;
+            height: 30px;
+            border: 1px solid #000;
+        }
+
+        div {
+            position: absolute;
+            top: 0;
+            display: none;
+            width: 400px;
+            height: 400px;
+            background: #f40;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <button>点击</button>
+
+    <script>
+        let btn = document.querySelector('button')
+        let div = document.querySelector('div');
+        var W = document.documentElement.clientWidth;
+        var H = document.documentElement.clientHeight;
+        var w = W - div.offsetWidth;
+        var h = H - div.offsetHeight;
+        console.log(w, h, W, H);
+        btn.onclick = function () {
+            div.style.display = 'block';
+            this.style.display = 'none';
+            div.onmousedown = function (a) {
+                var w = W - div.offsetWidth;
+                var h = H - div.offsetHeight;
+                let x = a.pageX - div.offsetLeft;
+                let y = a.pageY - div.offsetTop;
+                div.onmousemove = function (a) {
+                    let mx = a.pageX;
+                    let my = a.pageY;
+                    let ex = mx - x;
+                    let ey = my - y;
+                    if (ex < 0) { ex = 0; }
+                    if (ey < 0) { ey = 0; }
+                    if (ex <= w && ey <= h) {
+                        div.style.left = ex + 'px';
+                        div.style.top = ey + 'px';
+                    } else {
+                        div.onmousemove = null;
+                    }
+                }
+            }
+        }
+        div.onmouseup = function () {
+            div.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

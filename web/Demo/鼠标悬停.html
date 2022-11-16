@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background: #f40;
+            border: 1px solid rgb(228, 33, 33);
+        }
+    </style>
+</head>
+
+<body>
+    <button>选项卡1</button>
+    <button>选项卡1</button>
+    <button>选项卡1</button>
+    <button>选项卡1</button>
+    <script>
+        var btns = document.getElementsByTagName('button');
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].onmouseover = function () {
+                for (let i = 0; i < btns.length; i++) {
+                    btns[i].className = '';
+                }
+                this.className = 'active';
+            }
+            btns[i].onmouseleave = function () {
+                for (let i = 0; i < btns.length; i++) {
+                    this.className = '';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

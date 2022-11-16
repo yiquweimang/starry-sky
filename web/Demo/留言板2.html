@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #f4f4f4;
+    }
+
+    /* 外部容器样式设置 */
+    .wrapper {
+        width: 400px;
+        height: 500px;
+        background-image: url();
+        background-size: contain;
+        border-radius: 15px;
+        opacity: .6;
+        margin: auto;
+    }
+
+    /* 内部容器样式设置 */
+    .inner {
+        width: 300px;
+        height: 500px;
+        margin: 50px auto;
+    }
+
+    /* 提交留言按钮样式设置 */
+    #student {
+        outline: none;
+        resize: none;
+        margin-top: 20px;
+    }
+
+    #btn {
+        display: block;
+        width: 100px;
+        height: 40px;
+        margin: 20px 0 20px 0;
+        font-size: 17px;
+
+        color: rgb(90, 88, 88);
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid gray;
+    }
+
+
+    p {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #text {
+        float: right;
+        margin-top: 10px;
+        font-size:14px;
+    }
+
+    #text-now {
+        color: #777;
+    }
+
+    /* 呈现留言区域样式设置 */
+    ul {
+        margin-top: 10px;
+    }
+
+    ul>li {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        border-bottom: 1px solid #999;
+        font-size: 18px;
+        font-weight:bold;
+    }
+
+    ul>li>div {
+        float: right;
+    }
+
+    ul>li>div>button {
+        width: 50px;
+        height: 25px;
+        color: #333;
+        margin-left: 5px;
+    }
+</style>
+<body>
+     <!-- 外部容器 -->
+     <div class="wrapper">
+        <!-- 内部容器 -->
+        <div class="inner">
+            <!-- 输入留言区域 -->
+            <textarea name="student" id="student" cols="40" rows="10"></textarea>
+            <!-- 统计文本域中的字数 -->
+            <p id="text">已输入字数：
+                <span id="text-now">0</span>/100
+            </p>
+            <!-- 提交留言按钮 -->
+            <input type="button" id="btn" value="提交留言">
+            <p>留言列表</p>
+            <!-- 呈现留言区域 -->
+            <ul>
+            </ul>
+        </div>
+    </div>
+        <!-- 实现留言功能的JS部分 -->
+        <script>
+            // 获取提交留言按钮
+            var btn = document.getElementById('btn');
+            // 获取留言板
+            var msg = document.getElementById('student');
+            // 获取呈现留言区域
+            var ul = document.querySelector('ul');
+            // 获取每一个li
+            var li = ul.children;
+            // 获取删除留言按钮
+            var del = document.getElementById('del');
+            // 获取统计文本域中文字的元素
+            var text = document.getElementById('text-now');
+     
+            // 为提交留言按钮添加单击事件
+            btn.onclick = function () {
+                if (msg.value == '') {
+                    alert('留言不可为空哦！');
+                } else {
+                    var li = document.createElement('li');
+                    var date = new Date();
+                    var time = date.toLocaleDateString();
+                    li.innerHTML = msg.value + '<div>' + '<span>' + time + '</span>' + '<button>' + '删除' + '</button>' + '</div>';
+                    var length = (msg.value).length;
+                    if (length > 100) {
+                        alert('当前输入字符长度不可超过100！');
+                        msg.value = '';
+                    } else {
+                        text.innerText = length;
+                        ul.insertBefore(li, ul.children[0]);
+                        msg.value = '';
+                    }
+                    //   通过事件的委派实现删除功能，事件的委派也是利用到了事件的冒泡，通过给父元素绑定事件解决问题
+                    ul.addEventListener('click', function (event) {
+                        if (event.target.nodeName == 'BUTTON') {
+                            ul.removeChild(event.target.parentNode.parentNode);
+                        }
+                    }, false);
+                }
+            }
+        </script>
+</body>
+</html>

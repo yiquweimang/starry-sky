@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .contain {
+            width: 1226px;
+            margin: 50px auto;
+        }
+
+        .c1::after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        .left {
+            width: 400px;
+            height: 600px;
+            background-color: skyblue;
+            float: left;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .right {
+            height: 600px;
+            background-color: #6ff;
+            overflow: hidden;
+        }
+
+        .smallImg {
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+
+        .bigImg {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .glass {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+        .img2 {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain c1">
+        <div class="left">
+            <div class="smallImg">
+                <img src="imgs/girlsmall1.jpg" alt="" class="img1">
+                <div class="glass"></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="bigImg"><img src="imgs/grilbig1.jpg" class="img2"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let smallImg = document.querySelector('.smallImg')
+    let bigImg = document.querySelector('.bigImg')
+    let glass = document.querySelector('.glass')
+    smallImg.onmouseover = function () {
+        // 让放大镜显示
+        glass.style.display = 'block'
+        // 让右图显示
+        bigImg.style.display = 'block'
+        // 给放大镜添加移动事件
+    }
+    smallImg.onmousout = function () {
+        glass.style.display = 'none';
+        bigImg.style.display = 'none';
+    }
+    
+</script>
+
+</html>

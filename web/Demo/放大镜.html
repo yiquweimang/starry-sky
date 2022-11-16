@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .box {
+            position: relative;
+            width: 500px;
+            height: 250px;
+        }
+
+        .yy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 125px;
+            height: 125px;
+            background-color: yellow;
+            opacity: 0.5;
+            border: 1px solid #333;
+            display: none;
+        }
+
+        .big {
+            position: absolute;
+            left: 550px;
+            top: 0px;
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .big>img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        ul {
+            position: absolute;
+            top: 260px;
+            left: -30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 500px;
+        }
+
+        li {
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="imgs/marrio1.jpg" alt="" class="small">
+        <div class="yy"></div>
+        <div class="big">
+            <img id="big" alt="">
+        </div>
+    </div>
+    <ul>
+        <li><img src="imgs/marrio.jpg" width="100px" height="50px" alt=""></li>
+        <li><img src="imgs/kabi.jpg" width="100px" height="50px" alt=""></li>
+        <li><img src="imgs/TearsOfTheKingdom.jpg" width="100px" height="50px" alt=""></li>
+    </ul>
+    <script>
+        let li = document.querySelectorAll('li');
+        let img = document.querySelector('.small')
+        let img1 = document.querySelector('#big')
+        let arr = ['imgs/marrio1.jpg', "imgs/kabi.png", "imgs/TearsOfTheKingdom.png"]
+        let arr1 = ['imgs/marrio.jpg', "imgs/kabi.jpg", "imgs/TearsOfTheKingdom.jpg"]
+        for (let i = 0; i < li.length; i++) {
+            li[i].onclick = function () {
+                img.src = arr[i];
+                img1.src = arr1[i]
+            }
+        }
+        window.addEventListener('load', function () {
+            var box = document.querySelector('.box');
+            var yy = document.querySelector('.yy');
+            var big = document.querySelector('.big');
+            box.addEventListener('mouseover', function () {
+                yy.style.display = 'block';
+                big.style.display = 'block';
+            })
+            box.addEventListener('mouseout', function () {
+                yy.style.display = 'none';
+                big.style.display = 'none';
+            })
+            box.addEventListener('mousemove', function (e) {
+                var x = e.pageX - box.offsetLeft;
+                var y = e.pageY - box.offsetTop;
+                var width = x - yy.offsetWidth / 2;
+                var height = y - yy.offsetHeight / 2;
+
+                if (width <= 0) {
+                    width = 0;
+                } else if (width >= box.offsetWidth - yy.offsetWidth) {
+                    width = box.offsetWidth - yy.offsetWidth;
+                }
+                if (height <= 0) {
+                    height = 0;
+                } else if (height >= box.offsetHeight - yy.offsetHeight) {
+                    height = box.offsetHeight - yy.offsetHeight;
+                }
+                yy.style.left = width + 'px';
+                yy.style.top = height + 'px';
+                var bigimg = document.querySelector('.big>img');
+                // 大图片的移动距离=遮挡层移动距离*大图片最大移动距离/遮挡层最大移动距离
+                var bigx = width * (bigimg.offsetWidth - big.offsetWidth) / (box.offsetWidth - yy.offsetWidth);
+                var bigy = height * (bigimg.offsetHeight - big.offsetHeight) / (box.offsetHeight - yy.offsetHeight);
+                bigimg.style.left = -bigx + 'px';
+                bigimg.style.top = -bigy + 'px';
+            })
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .warp {
+        width: 100%;
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+        width: 846px;
+        height: 472px;
+        margin: 50px auto;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        left: 223px;
+        bottom: 20px;
+        width: 400px;
+        height: 20px;
+    }
+
+    li {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    #Next {
+        position: absolute;
+        top: 211px;
+        right: 0;
+        width: 20px;
+        height: 50px;
+        display: none;
+        font-size: 35px;
+        color: #fff;
+        background: #424242;
+        opacity: 0.5;
+    }
+
+    #Before {
+        position: absolute;
+        top: 211px;
+        left: 0;
+        display: none;
+        width: 20px;
+        height: 50px;
+        font-size: 33px;
+        color: #fff;
+        background: #424242;
+        opacity: 0.5;
+    }
+
+
+    #Before:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    #Next:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    #next {
+        position: absolute;
+        right: 540px;
+        display: none;
+    }
+
+    #before {
+        position: absolute;
+        left: 540px;
+        display: none;
+    }
+
+    .active {
+        background-color: #f40;
+    }
+</style>
+
+<body>
+    <div class="warp">
+        <div class="carousel">
+            <div id="Before">&lt;</div>
+            <div id="Next">&gt;</div>
+            <img src="imgs/1.jpg" alt="">
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <button id="before">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+
+    <script>
+        let carousel = document.querySelector('.carousel');
+        let li = document.querySelectorAll('li');
+        let img = document.querySelector('img');
+        let arr = ["imgs/1.jpg", 'imgs/5.jpg', 'imgs/3.jpg', 'imgs/4.jpg']
+        var num = 0;
+        // let onoff = true;
+        let btn1 = document.querySelector('#next').addEventListener('click',
+            // 隐藏显示1
+            // function(){
+            //     num++;
+            //     if(num % 2 == 1){
+            //     img.style.visibility = 'hidden';
+            // }else{
+            //     img.style.visibility = 'visible';
+            // }
+            // }
+            // 隐藏显示2
+            // function(){
+            //     if(onoff){
+            //         img.style.visibility = 'hidden';
+            //     }else{
+            //         img.style.visibility = 'visible';
+            //     }
+            //     onoff =! onoff;
+            // }
+            // 
+            // 切换图片（下一张）
+            function () {
+                num++;
+                if (num == arr.length) {
+                    num = 0;
+                }
+                img.src = arr[num];
+                //          2
+                //         num%=arr.length;
+                //         img.src = arr[num];
+                //    
+            }
+        )
+        let next = document.querySelector('#Next');
+        next.addEventListener('click',
+            function () {
+                num++;
+                if (num == arr.length) {
+                    num = 0;
+                }
+                img.src = arr[num];
+                for (var j = 0; j < li.length; j++) {
+                    li[j].classList.remove('active');
+                }
+                li[num].className = 'active';
+            }
+        )
+        // 切换图片（上一张）   
+        let btn2 = document.querySelector('#before').addEventListener('click',
+            function () {
+                if (num == 0) {
+                    num = arr.length - 1;
+
+                } else {
+                    num--;
+                }
+                img.src = arr[num];
+            }
+
+        )
+        let before = document.querySelector('#Before');
+        before.addEventListener('click',
+            function () {
+                if (num == 0) {
+                    num = arr.length - 1;
+
+                } else {
+                    num--;
+                }
+                img.src = arr[num];
+                for (var j = 0; j < li.length; j++) {
+                    li[j].classList.remove('active');
+                }
+                li[num].className = 'active';
+            }
+
+        )
+        //小圆点
+        for (let i = 0; i < li.length; i++) {
+            li[i].onclick = function () {
+                for (var j = 0; j < li.length; j++) {
+                    li[j].classList.remove('active');
+                }
+                this.classList.add('active')
+                img.src = arr[i];
+            }
+        }
+        // 自动切换图片  
+        let timer = null;
+        timer = setInterval(fn, 2000);
+        function fn() {
+            num++;
+            if (num == arr.length) {
+                num = 0;
+            }
+            img.src = arr[num];
+            for (var j = 0; j < li.length; j++) {
+                li[j].classList.remove('active');
+            }
+            li[num].className = 'active';
+        }
+        carousel.onmouseover = function () {
+            clearInterval(timer);
+            next.style.display = 'block';
+            before.style.display = 'block';
+        }
+        carousel.onmouseout = function () {
+            timer = setInterval(fn, 2000);
+            next.style.display = 'none';
+            before.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

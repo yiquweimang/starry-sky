@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        position: relative;
+        background: #000;
+    }
+    div{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
+    div img{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <script>
+            function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        window.addEventListener('load', function() {
+
+            var creatstar = setInterval(function() {
+                var div = document.createElement('div');
+                var starWidth = getRandom(20, 100);
+                var starHeight = starWidth;
+                var starLeft = getRandom(0, window.innerWidth - starWidth - 50);
+                var starTop = getRandom(0, window.innerHeight - starHeight - 50);
+                div.style.top = starTop + 'px';
+                div.style.left = starLeft + 'px';
+                div.style.width = starWidth + 'px';
+                div.style.height = starHeight + 'px';
+                document.body.appendChild(div);
+                var img = document.createElement('img');
+                img.src = 'starimgs/star.gif';
+                div.appendChild(img);
+            }, 2000);
+
+            document.addEventListener('click', function(e) {
+                document.body.removeChild(e.target.parentNode);
+                
+            });
+        });
+
+    </script>
+</body>
+</html>

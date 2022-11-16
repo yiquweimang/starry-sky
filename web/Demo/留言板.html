@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;margin: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        .warp{
+            margin: 50px auto;
+            width: 600px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+        input{
+            margin: 40px 20px 40px 40px;
+            width: 400px;
+            height: 40px;
+            outline: none;
+            border-radius: 16px;
+        }
+        button{
+            width: 50px;
+            height: 40px;
+            margin-left: 20px;
+        }
+        ul>li{
+            display: flex;
+            justify-content:space-between;
+            margin: 10px 20px 10px 40px;
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #000;
+        }
+        .remove{
+            width: 40px;
+            height: 30px;
+            font-style: 12px;
+        }
+    </style>
+</head>
+<body> 
+<div class="warp">
+    <input type="text" value="">
+    <button>发布</button>
+    <ul>
+    </ul>
+</div>
+<script>
+// 获取相应元素
+let input = document.querySelector('input');
+let btn = document.querySelector('button');
+let ul = document.querySelector('ul');
+let children = ul.children;
+// 创建发布点击事件
+// btn.onclick = function(){
+//     if(input.value == ''){alert('留言不可为空！')}
+//     else{
+//     let value = input.value;
+//     // 创建li标签
+//     let li = document.createElement('li');
+//     li.innerHTML = '<p>'+value+'</p> <button class="remove">删除</button>';
+//     ul.appendChild(li);
+//     input.value = '';
+//     // 创建删除事件
+//     for(var i = 0;i < children.length;i++){
+//         children[i].onclick = function(){
+//             this.remove();
+//         }
+//     }
+// }
+// }
+btn.onclick=function(){       
+          var value=input.value;
+         if(value==""){
+             alert("请输入内容")
+         }else{
+            var li=document.createElement("li")
+            li.innerHTML=value+"<button class='remove'>删除</button>";
+            ul.appendChild(li)    
+                //   获取所有的删除标签
+            var a=document.querySelectorAll(".remove")
+            // 给删除标签绑定事件
+            for(var i=0;i<a.length;i++){
+                a[i].onclick=function(){
+                    // 获取删除整个内容标签
+                    var li=this.parentNode;
+                    // 删除内容
+                    ul.removeChild(li)
+                }
+            }
+         }
+        //  发布内容以后，清空表单中原来的内容
+         input.value=""
+         
+ 
+      }
+
+
+</script>
+</body>
+</html>

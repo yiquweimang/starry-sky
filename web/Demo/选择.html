@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 400px;
+        height: 650px;
+        border: 1px solid #f40;
+        margin: 20px auto;
+    }
+    input{
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    h2{
+        line-height: 30px;
+        text-align: center;
+    }
+    button{
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+</style>
+<body>
+    <div>
+        <h2>歌曲排行榜</h2>
+        <hr>
+        <input type="checkbox" name="" id="">1.龙卷风
+        <br>
+        <input type="checkbox" name="" id="">2.千里之外
+        <br>
+        <input type="checkbox" name="" id="">3.夜曲
+        <br>
+        <input type="checkbox" name="" id="">4.以父之名
+        <br>
+        <input type="checkbox" name="" id="">5.等一分钟
+        <br>
+        <input type="checkbox" name="" id="">6.七里香
+        <br>
+        <input type="checkbox" name="" id="">7.春风十里
+        <br>
+        <input type="checkbox" name="" id="">8.贝加尔湖
+        <br>
+        <input type="checkbox" name="" id="">9.暗香
+        <hr>
+        <button>全选</button>
+        <button>取消选中</button>
+        <button>反选</button>
+    </div>
+    <script>
+        let input = document.querySelectorAll('input');
+        let btns = document.querySelectorAll('buuton');
+        btns[0].addEventListener('click',
+        function(){
+            for(let i = 0;i<input.length;i++){
+                input[i].checked = true;
+            }
+        }
+        )
+    </script>
+</body>
+</html>

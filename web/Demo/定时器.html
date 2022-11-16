@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>click</button>
+    <button>remove</button>
+    <script>
+        let btn = document.querySelectorAll('button');
+        let num = 0;
+        let time = null;
+        // 创建定时器
+        // let time = null;
+        // time = setInterval(sum, 1000);
+        // 去除定时器
+        // clearInterval(time);
+        // 开启定时器之前先关闭，防止多个定时器累加
+        btn[0].onclick = function () {
+            clearInterval(time)
+            time = setInterval(sum, 1000);
+        }
+        btn[1].onclick = function () {
+            clearInterval(time);
+        }
+        // 事件处理函数
+        function sum() {
+            num++;
+            console.log(num);
+        }
+    </script>
+</body>
+
+</html>

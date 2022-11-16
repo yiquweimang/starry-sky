@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con div {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .con div:nth-child(1) {
+            background: green;
+        }
+
+        .con div:nth-child(2) {
+            background: #f40;
+        }
+
+        .con div:nth-child(3) {
+            background: pink;
+        }
+        .con{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+</body>
+
+</html>

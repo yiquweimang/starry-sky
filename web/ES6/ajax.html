@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            /*
+                type 代表 请求方式
+                url  代表 请求url路径
+                data 代表 发送数据
+                success 代表 下载数据成功以后执行的函数
+                error   代表 下载数据失败以后执行的函数
+            */
+            function $ajax({type = "get", url, data, success, error}){
+                var xhr = null;
+                try{
+                    xhr = new XMLHttpRequest();
+                }catch(error){
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP")
+                }
+                
+                if(type == "get" && data){
+                    url += "?" + querystring(data);
+                }
+
+                xhr.open(type, url, true);
+
+                if(type == "get"){
+                    xhr.send();
+                }else{
+                     //设置提交数据格式
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    data ? xhr.send(querystring(data)) : xhr.send();
+                }
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            if(success){
+                                success(xhr.responseText);
+                            }
+                        }else{
+                            if(error){
+                                error("Error：" + xhr.status);
+                            }
+                        }
+                    }
+                }
+            }
+            function querystring(obj){
+                var str = '';
+                for(var attr in obj){
+                    str += attr + "=" + obj[attr] + "&";
+                }
+                return str.substring(0, str.length - 1);
+            }
+
+            window.onload = function(){
+                var aBtns = document.getElementsByTagName("button");
+                /*
+                    当我们下载完数据以后需要对数据的处理方式不一样
+                    【注】$ajax，我们需要按照传参的顺序，依次传入我们的参数。
+                */
+
+                aBtns[0].onclick = function(){
+                    $ajax({
+                        url: "code14/1.get.php",
+                        data: {
+                            username: "小明",
+                            age: 18,
+                            password: "123abc"
+                        },
+                        success: function(result){
+                            alert("GET请求到的数据：" + result);
+                        },
+                        error: function(msg){
+                            alert("GET请求数据错误：" + msg);
+                        }
+                    })
+                }
+
+                aBtns[1].onclick = function(){
+                    $ajax({
+                        type: "post",
+                        url: "code14/2.post.php",
+                        data: {
+                            username: "小花",
+                            age: 18,
+                            password: "123abc"
+                        },
+                        success: function(result){
+                            alert("POST请求到的数据：" + result);
+                        },
+                        error: function(msg){
+                            alert("POST请求数据错误：" + msg);
+                        }
+                    })
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <button>GET请求</button>
+        <button>POST请求</button>
+    </body>
+</html>

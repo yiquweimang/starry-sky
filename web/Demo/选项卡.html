@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    .warp {
+        display: flex;
+        flex-direction: column;
+        margin: 50px auto;
+        width: 400px;
+        height: 500px;
+        border: 1px solid #000;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: end;
+        width: 400px;
+        height: 80px;
+        border-bottom: 1px solid #000;
+    }
+
+    li {
+        width: 80px;
+        height: 50px;
+        padding-top: 15px;
+        text-align: center;
+    }
+
+    li:hover {
+        background: #f40;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="warp">
+        <ul>
+            <li>商品介绍</li>
+            <li>视频介绍</li>
+            <li>技术知识</li>
+            <li>关于我们</li>
+        </ul>
+        <div class="context">
+            <div class="text">商品内容</div>
+            <div class="text">视频内容</div>
+            <div class="text">技术内容</div>
+            <div class="text">感谢</div>
+        </div>
+    </div>
+    <script>
+        let lis = document.querySelectorAll('li');
+        let text = document.querySelectorAll('.text');
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].index = i;
+            lis[i].onmouseover = function () {
+                for (let i = 0; i < lis.length; i++) {
+                    text[i].style.display = "none";
+                }
+                text[this.index].style.display = "block"
+            }
+        } 
+    </script>
+</body>
+
+</html>

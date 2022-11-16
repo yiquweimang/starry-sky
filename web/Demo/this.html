@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>dianji</button>
+    <button>dianji1</button>
+    <button>dianji2</button>
+    <script>
+        // let btn = document.querySelectorAll('button');
+        // for(var i = 0;i < btn.length;i++){
+        //     btn[i].onclick = function(){
+        //         console.log(this);//谁调用指向谁
+        //     }
+        // }
+        // const person = {
+        //     name:'Alan',
+        // 对象内方法 常用写法
+        //     eat(){
+        //         console.log(this);
+        //     }
+        // }
+        // console.log(this);
+        // person.eat();
+        // 
+        // let sum = (a) => {
+        //     return a;
+        // }
+        // 
+        // 箭头函数简写（仅有一个形参可以使用且大括号内只有一条语句）
+        // let sum = (a) => a;
+        // sum(1);
+        function fn(x,y) {
+            console.log(this);
+            console.log(x + y);
+        }
+        var names = {
+            name: 'Alan'
+        }
+        var age = {
+            age: 12
+        }
+        // fn(1,2);
+        //改变this指向
+        // fn.call(names, 1, 2);
+        // fn.apply(names,[1,2])//apply仅支持数组形式传参
+        // fn.bind(names,1,2)();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100hv;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="warp" width="500px" height="800px"></canvas>
+    <script>
+        let warp = document.querySelector('#warp');
+        let ctx = warp.getContext('2d');
+        ctx.fillStyle = '#000';
+        ctx.strokeStyle = '#fff';
+        ctx.fillRect(0, 0, 500, 800);
+        for (let i = 0; i < 17; i++) {
+            let X = () => {
+                ctx.moveTo(0, 50 * i);
+                ctx.lineTo(500, 50 * i);
+                ctx.stroke();
+            }
+            X();
+            for (let j = 0; j < 11; j++) {
+                let Y = () => {
+                    ctx.moveTo(50*j,0);
+                    ctx.lineTo(50*j, 800);
+                    ctx.stroke();
+                }
+                Y();
+            }
+        }
+    </script>
+</body>
+
+</html>

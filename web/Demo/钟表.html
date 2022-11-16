@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .clock {
+        position: relative;
+        margin: 50px auto;
+        width: 600px;
+        height: 600px;
+        background-image: url(clockimgs/clock.jpg)
+    }
+
+    #hour {
+        position: absolute;
+        left: 285px;
+        width: 30px;
+        height: 600px;
+    }
+
+    #min {
+        position: absolute;
+        left: 285px;
+        width: 30px;
+        height: 600px;
+    }
+
+    #second {
+        position: absolute;
+        left: 285px;
+        width: 30px;
+        height: 600px;
+    }
+</style>
+
+<body>
+    <div class="warp">
+        <div class="clock">
+            <div id="hour"><img src="clockimgs/hour.png" alt=""></div>
+            <div id="min"><img src="clockimgs/min.png" alt=""></div>
+            <div id="second"><img src="clockimgs/second.png" alt=""></div>
+        </div>
+    </div>
+    <script>
+        var hour = document.querySelector('#hour');
+        var min = document.querySelector('#min');
+        var second = document.querySelector('#second');
+        let timer = null;
+        timer = setInterval(function () {
+            let date = new Date();
+            let ms = date.getMilliseconds();
+            let s = date.getSeconds() + ms / 1000;
+            let m = date.getMinutes() + s/60;
+            let h = date.getHours() % 12 + m / 60;
+            // let s = date.getSeconds() ;
+            // let m = date.getMinutes() ;
+            // let h = date.getHours() ;
+            second.style.transform = 'rotate('+ s * 6 +'deg)';
+            min.style.transform = 'rotate('+ m * 6 +'deg)';     
+            hour.style.transform = 'rotate('+ h * 30 +'deg)';
+        },30)
+    </script>
+</body>
+
+</html>
